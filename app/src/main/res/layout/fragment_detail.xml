@@ -4,34 +4,60 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.DetailFragment">
 
+        <ImageView
+            android:id="@+id/iv_dogImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:src="@mipmap/ic_dog_icon"
+            android:minHeight="@dimen/size_200"
+            android:scaleType="fitCenter"/>
+
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_dogName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/detail_fragment"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_20"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_below="@+id/iv_dogImage"
+            style="@style/Title"
+            android:text="@string/dog_name"
+            android:layout_margin="@dimen/size_4"
+            android:layout_centerHorizontal="true"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnToList"
+        <TextView
+            android:id="@+id/tv_dogPurpose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:src="@drawable/ic_format_list"
-            android:layout_marginBottom="4dp"
-            android:layout_marginRight="@dimen/size_4"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_below="@+id/tv_dogName"
+            style="@style/Title"
+            android:text="@string/dog_purpose"
+            android:layout_margin="@dimen/size_4"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/tv_dogTemperament"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_dogPurpose"
+            style="@style/Title"
+            android:text="@string/dog_Temperament"
+            android:layout_margin="@dimen/size_4"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/tv_dogLifespan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_dogTemperament"
+            style="@style/Title"
+            android:text="@string/dog_Lifespan"
+            android:layout_margin="@dimen/size_4"
+            android:layout_centerHorizontal="true"/>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 </layout>
