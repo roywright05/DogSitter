@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dogsitter.R
 import com.example.dogsitter.viewmodel.ListViewModel
 import kotlinx.android.synthetic.main.fragment_list.*
+import kotlinx.android.synthetic.main.fragment_list.view.*
 
 class ListFragment : Fragment() {
 
@@ -41,10 +42,18 @@ class ListFragment : Fragment() {
 
         }
 
+        refreshLayout.setOnRefreshListener {
+            dogsList.visibility = View.GONE
+            listError.visibility = View.GONE
+            loadingView.visibility = View.VISIBLE
+            viewModel.refresh()
+            refreshLayout.isRefreshing = false
+        }
+
         observeViewModel()
     }
 
-    fun observeViewModel(){
+    private fun observeViewModel(){
         viewModel.dogs.observe(this, Observer { dogs ->
 
             dogs?.let {

@@ -7,14 +7,15 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dogsitter.R
 import com.example.dogsitter.model.DogBreed
+import com.example.dogsitter.util.getProgressDrawable
+import com.example.dogsitter.util.loadImage
+import kotlinx.android.synthetic.main.fragment_detail.view.*
+import kotlinx.android.synthetic.main.fragment_list.view.*
 import kotlinx.android.synthetic.main.item_dog.view.*
 
 class DogListAdapter (val dogsList: ArrayList<DogBreed>): RecyclerView.Adapter<DogListAdapter.DogViewHolder>(){
 
-    class DogViewHolder(var view: View) : RecyclerView.ViewHolder(view){
-
-
-    }
+    class DogViewHolder(var view: View) : RecyclerView.ViewHolder(view)
 
     fun updateDogList(newDogList: List<DogBreed>){
 
@@ -39,8 +40,12 @@ class DogListAdapter (val dogsList: ArrayList<DogBreed>): RecyclerView.Adapter<D
         holder.view.tvLifespan.text = dogsList[position].lifeSpan
 
         holder.view.setOnClickListener{
-            Navigation.findNavController(it).navigate(ListFragmentDirections.actionListFragmentToDetailFragment())
+            Navigation.findNavController(it)
+                .navigate(ListFragmentDirections.actionListFragmentToDetailFragment())
         }
+
+        holder.view.imageView.loadImage(dogsList[position].imageUrl,
+            getProgressDrawable(holder.view.imageView.context))
 
 
     }
