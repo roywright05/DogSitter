@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 
 import com.example.dogsitter.R
+import com.example.dogsitter.util.getProgressDrawable
+import com.example.dogsitter.util.loadImage
 import com.example.dogsitter.viewmodel.DetailViewModel
 import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.android.synthetic.main.fragment_list.view.*
@@ -32,20 +34,20 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
-        viewModel.fetch()
-
         arguments?.let {
             dogUuid = DetailFragmentArgs.fromBundle(it).dogUuid
 
         }
+        viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
+        viewModel.fetch(dogUuid)
 
         observeViewModel()
     }
 
-    fun observeViewModel(){
+    private fun observeViewModel(){
 
-        viewModel.dogDetails.observe(this, Observer { dog -> dog?.let {
+        viewModel.dogLiveData.observe(this, Observer { dog ->
+            dog?.let {
 
             //here use all your widget ids to retrieve the values from model class
 
@@ -53,6 +55,11 @@ class DetailFragment : Fragment() {
             tv_dogPurpose.text = dog.bredFor
             tv_dogTemperament.text = dog.temperament
             tv_dogLifespan.text = dog.lifeSpan
+
+            context?.let{
+                iv_dogImage.loadImage(dog.imageUrl, getProgressDrawable(it))
+            }
+
         }
 
         })

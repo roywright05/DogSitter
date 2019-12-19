@@ -40,6 +40,8 @@ class DogListAdapter (val dogsList: ArrayList<DogBreed>): RecyclerView.Adapter<D
         holder.view.tvLifespan.text = dogsList[position].lifeSpan
 
         holder.view.setOnClickListener{
+            val action = ListFragmentDirections.actionListFragmentToDetailFragment()
+            action.dogUuid = dogsList[position].uuid
             Navigation.findNavController(it)
                 .navigate(ListFragmentDirections.actionListFragmentToDetailFragment())
         }

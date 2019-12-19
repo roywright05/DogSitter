@@ -53,7 +53,7 @@ class ListFragment : Fragment() {
         observeViewModel()
     }
 
-    private fun observeViewModel(){
+     fun observeViewModel(){
         viewModel.dogs.observe(this, Observer { dogs ->
 
             dogs?.let {
