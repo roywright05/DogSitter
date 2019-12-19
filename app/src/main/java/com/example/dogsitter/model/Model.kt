@@ -34,7 +34,8 @@ data class DogBreed( /*This is just the constructor in ()*/
     @ColumnInfo(name = "dog_url")
     @SerializedName("url")
     val imageUrl: String?
-){//This is the body of the data class
+)
+{//This is the body of the data class
     @PrimaryKey(autoGenerate = true)
     var uuid :Int = 0
 
